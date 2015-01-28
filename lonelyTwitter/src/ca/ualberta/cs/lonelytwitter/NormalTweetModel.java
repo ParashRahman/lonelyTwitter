@@ -22,4 +22,5 @@ public class NormalTweetModel extends LonelyTweetModel {
 		return super.equals(other) && (other instanceof NormalTweetModel);
 	}
 
+
 }
