@@ -14,6 +14,8 @@ public class IntentReaderActivity extends Activity {
 	public static final int REVERSE = 2;
 	public static final int DOUBLE = 3;
 	
+	public static final String NO_STRING_MESSAGE = "No strings attached";
+	
 	private String text;
 	private int mode;
 	
@@ -25,6 +27,19 @@ public class IntentReaderActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_intent_reader);
+		
+		Intent intent = getIntent();
+		mode = intent.getIntExtra( TRANSFORM_KEY, NORMAL );
+		
+		text = transformText(intent.getStringExtra(TEXT_KEY));
+		
+		TextView textView = (TextView) findViewById(R.id.intentText);
+		
+		if ( text.length() == 0 ){
+			textView.setText(NO_STRING_MESSAGE);
+		} else {
+			textView.setText(text);
+		}
 	}
 	
 	public String transformText(String text) {
